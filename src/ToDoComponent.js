@@ -16,6 +16,12 @@ const newTask = tasks.filter((_,taskIndex)=> taskIndex !== index);
 setTasks(newTask);
 }
 
+const markTask = (index) => {
+    const newTask = tasks.map((task,taskIndex)=>
+        taskIndex===index?{...task, completed:!task.completed} : task)
+    setTasks(newTask);
+}
+
   return (
     <div className='main-container'>
         <h1>ToDo App</h1>
@@ -37,6 +43,9 @@ setTasks(newTask);
         <p>{index+1}: {task.name}</p>
         <span onClick={() => deleteTask(index)} class="material-symbols-outlined">
             delete</span>
+            <button onClick={()=>markTask(index)}>
+                {task.completed?'uncompleted':'completed'}
+            </button>
         </div>
         )}
     </div>
